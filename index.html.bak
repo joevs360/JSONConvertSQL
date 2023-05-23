@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>JSON para Insert</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <script src="js/script.js"></script>
+        <div class="itens">
+            <div class="divForm">
+                <form>
+                    <h1>JSON para Insert</h1>
+					<label for='tabela'>Tabela</label>
+					<input class='form-control' id='tabela' value =''></input>
+					<label for='json'>JSON</label>
+					<textarea class='form-control' id='json' rows='3' placeholder='JSON...' value =''></textarea>
+					<label for='sql'>INSERT</label>
+					<textarea class='form-control' id='sql' rows='3' placeholder='INSERT' value =''></textarea>
+					<br>
+					  <center>
+                        <button type="button" class="btn btn-danger" onclick="gerarInserts()">Gerar Inserts</button>
+                    </center>
+                </form>
+            </div>
+        </div>
+        <br>
+</body>
+</html>
