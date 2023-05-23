@@ -1,9 +1,10 @@
 function gerarInserts(){
-   var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('}"','}').replaceAll('\n','').split("{");
+   document.getElementById("sql").value =  "";
+   var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').split("{");
    var tabela = document.getElementById("tabela").value.replaceAll(' ', '');
    var inserts = "";
    for (var i = 0; i < textos.length; i++){
-	   if(textos[i] == "")
+	   if(textos[i].replaceAll(" ","") == "")
 		   continue;
 	   t = '{'+textos[i];
 	   json = JSON.parse(t)
@@ -14,10 +15,13 @@ function gerarInserts(){
 		   if (typeof json[c] === 'string') {
 				v.push("'" + json[c] + "'");
 			} else {
-				v.push(json[c]);
+				if(json[c]!=null)
+					v.push(json[c]);
+				else
+					v.push("NULL");
 			}
 	   }
-	   inserts += "INSERT INTO "+tabela+" (" + chaves.join(',') + ") VALUES (" + v.join(',') + ");\n";
+	   inserts += "INSERT INTO "+tabela.toUpperCase()+" (" + chaves.join(',') + ") VALUES (" + v.join(',') + ");\n";
    }
-   document.getElementById("sql").value = inserts.toUpperCase();
+   document.getElementById("sql").value = inserts;
 }
