@@ -1,6 +1,6 @@
 function gerarInserts(){
    document.getElementById("sql").value =  "";
-   var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').replaceAll("NULL","null").split("{");
+   var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').replaceAll('""','null').replaceAll("NULL","null").split("{");
    var tabela = document.getElementById("tabela").value.replaceAll(' ', '');
    var inserts = "";
    for (var i = 0; i < textos.length; i++){
