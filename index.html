@@ -16,7 +16,11 @@
 					<label for='tabela'>Tabela</label>
 					<input class='form-control' id='tabela' ></input>
 					<label for='json'>JSON</label>
-					<textarea class='form-control' id='json' rows='3' placeholder='JSON...'></textarea>
+					<textarea class='form-control' id='json' rows='3' placeholder='JSON...'  onchange="ListarColunas()"></textarea>
+					<div id='divColunas' style="display:none; margin:0;">
+						<label for='fieldColunas'>Colunas</label>
+						<fieldset class="fieldColuna" id='fieldColunas'/>
+					</div>
 					<label for='sql'>INSERT</label>
 					<textarea class='form-control' id='sql' rows='3' placeholder='INSERT'></textarea>
 					<br>

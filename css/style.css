@@ -19,3 +19,12 @@ form{
    
     margin: 20px;
 }
+
+
+  .fieldColuna {
+	height: 100px;
+	overflow-y: scroll;
+  }
+  .cks {
+	 display: inline-block;
+  }
