@@ -11,7 +11,7 @@ function gerarInserts(){
 	   var chaves = [];
 	   var v = [];
 	   for(var c in json){
-		   if(!document.getElementById("ck"+c).checked)
+		   if(document.getElementById("ck"+c) && !document.getElementById("ck"+c).checked)
 			   continue;
 		   chaves.push(c);
 		   if (typeof json[c] === 'string') {
