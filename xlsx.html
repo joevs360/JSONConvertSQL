@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>JSON para Insert</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+	<script src="js/biblioteca/xlsx.full.min.js"></script>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">Gerar SQL a partir do XLSX</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar" aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="textoNavbar">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item">
+			<a class="nav-link" href="./index.html">Json</a>
+		  </li>
+		  <li class="nav-item active">
+			<a class="nav-link" href="./xlsx.html">XLSX</a>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+		
+        <div class="itens">
+            <div class="divForm">
+				<form>
+					<br>
+					<center>
+						<button  type="button" class="btn-lixeira" id='btnLixeiraJson' style="display:none;" onclick="removerJson()">
+							<img src="imagens/delete.png" alt="Lixeira">
+						</button>
+						<input type="file" id="file-input" />
+					</center>
+				
+					<div id='divColunas' style="display:none; margin:0;">
+						<br><br>
+						<label for='fieldColunas'>Colunas</label>
+						<fieldset class="fieldColuna" id='fieldColunas'/>
+					</div>
+					<br>
+					<label for='tabela'>Tabela</label>
+					<input class='form-control' id='tabela' ></input>
+					<label for="acao">Ação</label>
+					<select class="form-control" id="acao">
+					  <option value="insert">Insert</option>
+					  <option value="update">Update</option>
+					</select>
+					<div id='divInsert' style="margin:0;">
+						<label for='chavePrimaria'>Chave Primaria</label>
+						<input class='form-control' id='chavePrimaria' ></input>
+						<div style=" margin: 0; display: flex; align-items: center;">
+						  <div style="margin: 0; margin-right: 10px; flex: 1 1 200px;">
+							  <label for='geracaoIDs' >Geração de IDs</label>
+							  <select class="form-control" id="geracaoIDs" style="margin-right: 10px;">
+								<option value="1">Gerar IDs a partir da Sequence</option>
+								<option value="2">Manter os IDs da planilha</option>
+							  </select>
+						  </div>
+
+						  <div id='divSequence' style="margin: 0;  flex: 1 1 200px;">
+							<label for='sequence' style="margin-right: 10px;">Sequence</label>
+							<input class='form-control' id='sequence'>
+						  </div>
+						</div>
+						<br>
+						<center>
+							<button type="button" class="btn btn-danger" onclick="gerarInserts()">Gerar Inserts</button>
+						</center>
+					</div>
+					<div id='divUpdate' style="margin:0;display:none;">
+						<label for='regra'>Regra</label>
+						<textarea class='form-control' id='regra' rows='2' placeholder='Where...'></textarea>
+						<div><fieldset id='fieldCamposValores'/></div>
+						<br>
+						<center>
+							<button type="button" class="btn btn-danger" onclick="gerarUpdates()">Gerar Updates</button>
+						</center>
+					</div>
+					<label for='sql'>SQL</label>
+					<textarea class='form-control' id='sql' rows='4' placeholder='SQL'></textarea>
+				</form>
+            </div>
+			  <script src="js/xlsx.js"></script>
+        </div>
+        <br>
+</body>
+</html>
