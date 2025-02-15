@@ -50,7 +50,7 @@ function gerarUpdates(){
 	   for(var c in json){
 			alteracao = c
 			if (typeof json[c] === 'string') {
-				v = ("'"+json[c] + "'");
+				v = ("'"+json[c].replace("'","''") + "'");
 			} else {
 				if(json[c]!=null)
 					v =(json[c]);
