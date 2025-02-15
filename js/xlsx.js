@@ -17,7 +17,7 @@ function gerarInserts(){
 			   continue;
 		   chaves.push(c);
 			if (typeof json[c] === 'string') {
-				v.push("'" + json[c] + "'");
+				v.push("'" + json[c].replace("'","''") + "'");
 			} else {
 				if(json[c]!=null)
 					v.push(json[c]);
