@@ -1,13 +1,11 @@
 function gerarInserts(){
    document.getElementById("sql").value =  "";
-   var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').replaceAll('""','null').replaceAll("NULL","null").split("{");
+   var textos = formatarJson();
    var tabela = document.getElementById("tabela").value.replaceAll(' ', '');
    var inserts = "";
    var sequence = checkboxSequence.checked ? document.getElementById("sequence").value : "";
    for (var i = 0; i < textos.length; i++){
-	   if(textos[i].replaceAll(" ","") == "")
-		   continue;
-	   t = '{'+textos[i];
+	   t = textos[i];
 	   json = JSON.parse(t)
 	   var chaves = [];
 	   var v = [];
@@ -37,13 +35,11 @@ function gerarInserts(){
 
 function ListarColunas(){
 	try {
-		var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').replaceAll('""','null').replaceAll("NULL","null").split("{");
+		var textos = formatarJson();
 		var tabela = document.getElementById("tabela").value.replaceAll(' ', '');
 		var inserts = "";
 		for (var i = 0; i < textos.length; i++){
-		   if(textos[i].replaceAll(" ","") == "")
-			   continue;
-		   t = '{'+textos[i];
+		   t = textos[i];
 		   json = JSON.parse(t)
 		   var chaves = [];
 		   var v = [];
@@ -64,6 +60,26 @@ function ListarColunas(){
 	  document.getElementById("fieldColunas").innerHTML = '';
 	}
 	
+}
+
+function validarTextosIgnorar(texto){
+	if (texto.replaceAll(" ","") == "" || 
+		texto.replaceAll(" ","").startsWith('"before_value":') || 
+		texto.replaceAll(" ","").startsWith('"pid":')|| 
+		texto.replaceAll(" ","").startsWith('"session_infos":'))
+        return true;
+		
+	return false;
+}
+function formatarJson(){
+	textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').replaceAll('""','null').replaceAll("NULL","null").split(/[\{\}]/);
+	retorno = []
+	for (var i = 0; i < textos.length; i++){
+		if(validarTextosIgnorar(textos[i]))
+			   continue;
+		retorno.push("{"+textos[i]+"}")  
+	}
+	return retorno
 }
 
 var checkboxSequence = document.getElementById('checkIDsSequence');
