@@ -3,6 +3,7 @@ function gerarInserts(){
    var textos = document.getElementById("json").value.replaceAll('"{','{').replaceAll('},','}').replaceAll('}"','}').replaceAll('\n','').replaceAll('""','null').replaceAll("NULL","null").split("{");
    var tabela = document.getElementById("tabela").value.replaceAll(' ', '');
    var inserts = "";
+   var sequence = checkboxSequence.checked ? document.getElementById("sequence").value : "";
    for (var i = 0; i < textos.length; i++){
 	   if(textos[i].replaceAll(" ","") == "")
 		   continue;
@@ -14,9 +15,15 @@ function gerarInserts(){
 		   if(document.getElementById("ck"+c) && !document.getElementById("ck"+c).checked)
 			   continue;
 		   chaves.push(c);
-		   if (typeof json[c] === 'string') {
+		   
+		   if(sequence && c.toUpperCase() == sequence.toUpperCase()){
+			   v.push("NEXTVAL('"+ sequence.toUpperCase()+ "')")
+			   continue;
+		   }
+		   else if (typeof json[c] === 'string') {
 				v.push("'" + json[c].replace("'","''") + "'");
-			} else {
+			} 
+			else {
 				if(json[c]!=null)
 					v.push(json[c]);
 				else
@@ -58,3 +65,14 @@ function ListarColunas(){
 	}
 	
 }
+
+var checkboxSequence = document.getElementById('checkIDsSequence');
+var txtTabela = document.getElementById('tabela');
+ 
+checkboxSequence.addEventListener('change', function() {
+	document.getElementById("divSequence").style.display = checkboxSequence.checked? 'block' : 'none'
+});
+  
+txtTabela.addEventListener('change', function() {
+	document.getElementById("sequence").value = "ID"+txtTabela.value.toUpperCase();
+});
