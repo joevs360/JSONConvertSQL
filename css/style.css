@@ -141,45 +141,6 @@ html[data-tema="escuro"] .btn-tema {
 	border-color: rgba(226, 232, 240, 0.3);
 }
 
-/* Layout */
-.itens {
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	flex-wrap: wrap;
-	padding-top: 20px;
-}
-
-.divForm {
-	box-shadow: var(--shadow);
-	border-radius: var(--radius);
-	min-width: 50%;
-	max-width: 900px;
-	background-color: var(--card-bg);
-	border: 1px solid var(--border);
-	overflow: hidden;
-}
-
-form {
-	margin: 24px;
-}
-
-label {
-	font-weight: 600;
-	font-size: 0.85rem;
-	text-transform: uppercase;
-	letter-spacing: 0.4px;
-	color: var(--text-muted);
-	margin-top: 12px;
-	margin-bottom: 4px;
-	display: block;
-}
-
-.form-control {
-	border-radius: 8px;
-	border: 1px solid var(--border);
-	transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
 
 .form-control:focus {
 	border-color: var(--primary);
